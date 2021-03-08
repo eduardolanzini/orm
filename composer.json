@@ -1,0 +1,20 @@
+{
+  "name": "eduardolanzini/orm",
+  "description": "Simple ORM",
+  "license": "MIT",
+  "minimum-stability":"stable",
+  "authors": [
+    {
+      "name": "Eduardo Lanzini"
+    }
+  ],
+  "require": {
+    "php": "^7.1.3",
+    "eduardolanzini/query-builder":"dev-main"
+  },
+  "autoload": {
+    "psr-4": {
+      "EduardoLanzini\\": "/scr"
+    }
+  }
+}
