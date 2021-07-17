@@ -16,10 +16,19 @@ Class Model
         return static::$primaryKey;
     }
 
-    public static function get($id)
+    public static function get($value,$column=null)
+    {
+        $v = isset($column) ? $column : $value;
+        $c = isset($column) ? $value  : static::$primaryKey;
+
+        return DB::table(static::$table.(static::$alias ? ' as '.static::$alias : '') )
+        ->where($c,$v)
+        ->get();
+    }
+
+    public static function getAll()
     {
         return DB::table(static::$table.(static::$alias ? ' as '.static::$alias : '') )
-        ->where((static::$alias ? static::$alias.'.' : '').static::$primaryKey, $id)
         ->get();
     }
 
@@ -32,9 +41,9 @@ Class Model
         ->find($c,$v);
     }
 
-    public static function select()
+    public static function select($fields = '*')
     {
-        return DB::table(static::$table.(static::$alias ? ' as '.static::$alias : '') );
+        return DB::table(static::$table.(static::$alias ? ' as '.static::$alias : '') )->select($fields);
     }
 
     public static function all()
